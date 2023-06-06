@@ -1,57 +1,22 @@
 "use client"
 
 import { useEffect, useState } from 'react'
-import Chips, { Chip } from 'react-chips'
 import Input from './Input'
-
-const KEYWORD_ITEM = {
-    title: 'Menu Item',
-    type: 'KEYWORD_ITEM'
-}
-
-const KEYWORD_AND = {
-    title: 'And',
-    type: 'KEYWORD_AND'
-}
-
-const KEYWORD_INGREDIENT = {
-    title: 'Ingredient',
-    type: 'KEYWORD_INGREDIENT'
-}
+import { useMenuSuggestions } from '../hooks/useMenuSuggestions'
 
 const MenuInput = ({menu}) => {
 
     const [suggestions, setSuggestions] = useState([])
     const [values, setValues] = useState([])
-    const [contextItem, setContextItem] = useState(null)
+    const computeSuggestions = useMenuSuggestions(menu)
 
     useEffect(() => {
-        setSuggestions([KEYWORD_ITEM])
+        setSuggestions(computeSuggestions())
     }, [menu])
 
     useEffect(() => {
         setSuggestions(computeSuggestions(values[values.length - 1]));
     }, [values])
-
-    const computeSuggestions = (lastValue) => {
-        if (!lastValue) return [KEYWORD_ITEM]
-        if (lastValue.type === 'KEYWORD_ITEM') {
-            return menu
-        }
-        if (lastValue.type === 'MENU_ITEM') {
-            setContextItem(lastValue)
-            return [KEYWORD_INGREDIENT, KEYWORD_AND]
-        }
-        if (lastValue.type === 'KEYWORD_INGREDIENT') {
-            return contextItem.ingredients
-        }
-        if (lastValue.type === 'KEYWORD_AND') {
-            return [KEYWORD_INGREDIENT, KEYWORD_ITEM]
-        }
-        if (lastValue.type === 'INGREDIENT') {
-            return [KEYWORD_AND]
-        }
-    }
 
     const addValue = (addedValue) => {
         setValues([...values, addedValue])

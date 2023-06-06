@@ -1,16 +1,17 @@
 import { NextResponse } from "next/server";
 import menu from './menu.json'
+import { MENU_ITEM, INGREDIENT } from '../../../types/menu-keywords.types';
 
 export default async function handler(req) {
   const result = []
   for (const [key, value] of Object.entries(menu.MenuItem)) {
     result.push({
-      type: 'MENU_ITEM',
+      type: MENU_ITEM,
       title: key,
       price: value,
       ingredients: menu.Ingredient[key].map(item => {
         return {
-          type: 'INGREDIENT',
+          type: INGREDIENT,
           title: item
         }
       })

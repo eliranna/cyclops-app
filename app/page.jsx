@@ -15,7 +15,7 @@ export default function Home() {
       <div className="flex flex-col items-center justify-center max-w-3xl px-8 mx-auto mt-8 sm:min-h-screen sm:mt-0 sm:px-0">
         <div className="hidden sm:mb-8 sm:flex sm:justify-center">
           <Link
-            href="https://github.com/chronark/envshare"
+            href="https://github.com/eliranna/cyclops-app"
             className="text-zinc-400 relative overflow-hidden rounded-full py-1.5 px-4 text-sm leading-6 ring-1 ring-zinc-100/10 hover:ring-zinc-100/30 duration-150"
           >
             This is Open Source on{" "}
@@ -24,19 +24,32 @@ export default function Home() {
             </span>
           </Link>
         </div>
-        <div>
-          <h1 className="py-4 text-5xl font-bold tracking-tight text-center text-transparent bg-gradient-to-t bg-clip-text from-zinc-100/50 to-white sm:text-7xl">
-            Get Your Favoraite Dish & Extras
-          </h1>
-          <p className="mt-6 leading-5 text-zinc-600 sm:text-center">
-            Unleash your taste buds and let our app guide you on a mouthwatering journey of flavors and surprises. Elevate your dining experience and savor every bite with our awesome app - the ultimate companion for finding your favorite dish with a delectable twist!
-          </p>
-          <div className="flex flex-col justify-center gap-4 mx-auto mt-8 sm:flex-row sm:max-w-lg ">
-            <MenuInput menu={menu}/>
+        <div className="space-y-10">
+          <div>
+            <h1 className="py-4 text-5xl font-bold tracking-tight text-center text-transparent bg-gradient-to-t bg-clip-text from-zinc-100/50 to-white sm:text-7xl">
+              Get Your Favoraite Dish & Extras
+            </h1>
+            <p className="mt-6 leading-5 text-zinc-600 sm:text-center">
+              Unleash your taste buds and let our app guide you on a mouthwatering journey of flavors and surprises. Elevate your dining experience and savor every bite with our awesome app - the ultimate companion for finding your favorite dish with a delectable twist!
+            </p>
+            <div className="flex flex-col justify-center gap-4 mx-auto mt-8 sm:flex-row sm:max-w-lg ">
+              <MenuInput menu={menu}/>
+            </div>
+          </div>
+          <div className="flex justify-center cursor-pointer">
+            <div
+              className="sm:w-1/2 sm:text-center inline-block space-x-2 rounded px-4 py-1.5 md:py-2 text-base font-semibold leading-7 text-white  ring-1 ring-zinc-600 hover:bg-white hover:text-zinc-900 duration-150 hover:ring-white hover:drop-shadow-cta"
+            >
+              I'm Done!
+            </div>            
+          </div>
+          <div>
+            <div className="flex flex-col justify-between duration-150 border rounded border-zinc-500/30 hover:border-zinc-300/30 hover:bg-zinc-900/30 group">
+              hi
+            </div>            
           </div>
         </div>
       </div>
-      <Testimonials />
     </div>
   );
 }

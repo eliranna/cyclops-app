@@ -1,13 +1,14 @@
 "use client"
 
 import { useState, useEffect } from 'react'
-import ReactChipInput from "react-chip-input"
-import "./input.css";
+import ChipsInput from './ChipsInput'
+import Suggestions from './Suggestions'
 
 const Input = ({chips, onChipRemove, options, onOptionSelection}) => {
 
     const [term, setTerm] = useState('')
     const [suggestions, setSuggestions] = useState([])
+    const [showSuggestions, setShowSuggestions] = useState(false)
 
     useEffect(() => {
         if (!term) {
@@ -21,24 +22,17 @@ const Input = ({chips, onChipRemove, options, onOptionSelection}) => {
         setTerm(term)
     }
 
+    const handleOptionSelection = (suggestion) => {
+        setShowSuggestions(false)
+        onOptionSelection(suggestion)
+    }
+
     return (
-        <div className="space-y-4">
-            <div contentEditable={true} suppressContentEditableWarning="true" onInput={e => handleInput(e.target.value)}>
-                <ReactChipInput
-                    classes="chipinput"
-                    chips={chips}
-                    onRemove={index => onChipRemove(index)}
-                />       
-            </div>
-            <div className="text-gray py-4 h-40 overflow-auto cursor-pointer text-center">
-                {suggestions.map(suggestion => {
-                    return (
-                        <div className="text-zinc-600 hover:text-white" onClick={() => onOptionSelection(suggestion)}>
-                            {suggestion.title}
-                        </div>
-                    )
-                })}
-            </div>
+        <div className="space-y-4 relative">
+            <ChipsInput chips={chips} onChipRemove={onChipRemove} onInput={handleInput} onFocus={() => setShowSuggestions(true)}/>
+            {showSuggestions && (
+                <Suggestions suggestions={suggestions} onSelect={handleOptionSelection}/>
+            )}
         </div>
 
     )
