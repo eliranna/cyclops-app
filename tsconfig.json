@@ -25,6 +25,6 @@
       }
     ]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/page.jsx", "app/hooks/useMenu.js", "app/page.jsx", "app/page.jsx", "app/components/Input.jsx", "pages/api/v1/menu.js"],
   "exclude": ["node_modules"]
 }
