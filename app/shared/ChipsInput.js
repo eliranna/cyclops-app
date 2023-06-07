@@ -1,5 +1,8 @@
-import "./input.css";
 import ReactChipInput from "react-chip-input"
+
+/*
+    ReactChipInput is a 3rd-party library, thus we must use noraml css classes instead Taliwind. 
+*/
 
 const ChipsInput = ({chips, onChipRemove, onInput, onFocus}) => {
     return (

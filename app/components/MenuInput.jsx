@@ -1,10 +1,11 @@
 "use client"
 
 import { useEffect, useState } from 'react'
-import Input from './Input'
+import AutoCompleteChipsInput from '../shared/AutoCompleteChipsInput'
 import { useMenuSuggestions } from '../hooks/useMenuSuggestions'
+import { MENU_ITEM } from "types/menu-keywords.types";
 
-const MenuInput = ({menu}) => {
+const MenuInput = ({menu, onChange}) => {
 
     const [suggestions, setSuggestions] = useState([])
     const [values, setValues] = useState([])
@@ -15,7 +16,8 @@ const MenuInput = ({menu}) => {
     }, [menu])
 
     useEffect(() => {
-        setSuggestions(computeSuggestions(values[values.length - 1]));
+        setSuggestions(computeSuggestions(values[values.length - 1]))
+        onChange(values.filter(item => item.type === MENU_ITEM))
     }, [values])
 
     const addValue = (addedValue) => {
@@ -29,7 +31,7 @@ const MenuInput = ({menu}) => {
     return (
         <div>
             <div>
-                <Input chips={values.map(value => value.title)} onChipRemove={removeValue} options={suggestions} onOptionSelection={addValue}/>    
+                <AutoCompleteChipsInput chips={values.map(value => value.title)} onChipRemove={removeValue} options={suggestions} onOptionSelection={addValue}/>    
             </div>  
         </div>
     )

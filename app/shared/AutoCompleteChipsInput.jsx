@@ -2,9 +2,9 @@
 
 import { useState, useEffect } from 'react'
 import ChipsInput from './ChipsInput'
-import Suggestions from './Suggestions'
+import SuggestionsMenu from '../components/SuggestionsMenu'
 
-const Input = ({chips, onChipRemove, options, onOptionSelection}) => {
+const AutoCompleteChipsInput = ({chips, onChipRemove, options, onOptionSelection}) => {
 
     const [term, setTerm] = useState('')
     const [suggestions, setSuggestions] = useState([])
@@ -31,7 +31,7 @@ const Input = ({chips, onChipRemove, options, onOptionSelection}) => {
         <div className="space-y-4 relative">
             <ChipsInput chips={chips} onChipRemove={onChipRemove} onInput={handleInput} onFocus={() => setShowSuggestions(true)}/>
             {showSuggestions && (
-                <Suggestions suggestions={suggestions} onSelect={handleOptionSelection}/>
+                <SuggestionsMenu suggestions={suggestions} onSelect={handleOptionSelection}/>
             )}
         </div>
 
@@ -39,4 +39,4 @@ const Input = ({chips, onChipRemove, options, onOptionSelection}) => {
     
 }
 
-export default Input;
+export default AutoCompleteChipsInput;
