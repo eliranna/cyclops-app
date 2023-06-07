@@ -25,6 +25,7 @@ const AutoCompleteChipsInput = ({chips, onChipRemove, options, onOptionSelection
     const handleOptionSelection = (suggestion) => {
         setShowSuggestions(false)
         onOptionSelection(suggestion)
+        setTerm('')
     }
 
     return (
